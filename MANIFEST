@@ -1,0 +1,10 @@
+Changes					History file
+MANIFEST				This file
+Makefile.PL				Makefile generator
+Mysql.xs				XS file (see man perlapi)
+README					Please read
+lib/Mysql.pm			Perl Module
+lib/Mysql/Statement.pm	Perl Module
+pmysql.PL				mysql and mysqlshow in one interactive program
+t/mysql.t				Test script, also a valuable tutorial for the clueless
+typemap					Typemap file (see man perlapi)

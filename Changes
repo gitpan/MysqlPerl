@@ -1,0 +1,98 @@
+April 2, 1997; Fred
+  I overturned some of Monty's changes, my primary aim being to be
+  absolutely compatible to the current MsqlPerl versions (not including
+  msql 2.0 extensions). In particular, I wanted the "fetchhash" and
+  "quote" methods, and I needed to be able to write fetchhash or
+  FetchHash or Fetch_Hash. These changes have been made to the original
+  Msql long ago but weren't ported to Mysql.
+
+  What we have now is a version of Mysql that does neither support
+  msql 2.0's extended functions (like indices) nor those of mysql.
+  But it should enable most of us to continue using their perl programs
+  trimmed for Msql - simply by doing a "sed -e 's/Msql/Mysql/g'" on
+  them. 
+
+  Development definitively has to be continued. I guess this version
+  is full of bugs...
+
+Mars 9, 1997; Monty
+  Added support of TIME and DATE types.
+  Added optional argument 'user' to connect.
+
+January 20, 1996 ; Monty
+  mysql_FetchRow now used the new API function mysql_fetch_lengths().
+  This allows binary data in blobs. (Before any null character in a blob
+  terminated the string)
+  Added test of binary strings with null and newline in mysql_test
+
+December 3, 1995
+  Added documentation for the following mysql variables:
+  $scalar = $sth->affected_rows;      Number of inserted/changed rows
+  $scalar = $sth->insert_id;	      New id in column with AUTO_INCREMENT specifier.
+  $arrref  = $sth->is_num;	      array of boolean
+  $arrref  = $sth->is_blob;	      array of boolean
+
+October 1, 1995
+   Fixed a serious bug. Since we do not store $db->{SOCK} and family
+   anymore, it's legal that the hash-entry doesn't exist. 1.02
+   returned the not very helpful message "Couldn't read svp".
+
+July 30, 1995
+    Fixed a few documentation bugs. Reintroduced -lmisc in Makefile.PL.
+    Introduced $Msql::QUIET, a variable to suppress error messages from
+    the msql daemon when $^W is true (i.e. when the -w switch is on)
+
+July 8, 1995 
+    Implemented a new interface that uses methods to access the object
+    attributes. The resulting version is a hermaphrodite that is fully
+    backwards compatible, but also implements the new
+    interface. Future versions will not support the old interface
+    anymore. The reason for the change is a greater flexibility and
+    also greater efficiency.
+
+    Fixed a memory leak (Thanks to Dan McGuirk <mcguirk@indirect.com>
+    for the report)
+
+June 4, 1995
+    Introduced the handling of NULL fields that comes with msql 1.0.6.
+    That should be a fully backwards compatible solution.
+
+    IQuery is gone, it turned out to be of no use at all. FastQuery is
+    still there.
+
+    The Msql::Tie package has gone in a different file and is still
+    considered experimental. If you have an opinion about it, tell me,
+    if not, don't ever use this file.
+
+April 22, 1995
+    Introduced masking of single ticks (') within the Insert method. 
+
+Feb 28, 1995
+    Connect(host, db) now connects to UNIX socket when hostname is the
+    null string. Did only so, if called as Connect() followed by
+    SelectDB(db).
+
+    Added a bench/ directory with two sample benchmarks.
+
+    $sth-{HOST}, $sth->{DATABASE}, and $sth->{SOCK} depreciated (will
+    not supported in future releases). Use their $dbh equivalent
+    instead!
+
+Feb 27, 1995
+    Fetching of metadata via tie() on demand with caching for TieQuery
+    and TieListFields implemeted. Turns out to be a performance
+    PENALTY, as the benefits of tie are eaten by the tie overhead. As
+    a byproduct new methods are available: $sth->fetchinternal(KEY),
+    $dbh->FastQuery(), $dbh->IQuery(), $dbh->FastListFields(). The
+    performance gain is much smaller than expected. Will have to be
+    reevaluated with perl5.001. The new functions are only important
+    for testing purposes, esp. for the implementation of the DBI
+    switch.
+
+    Insert() now checks the field type instead of the input type when
+    it decides, if a value should be enclosed in ticks. Insert is
+    faster now, but will be much faster, I suppose, once closures are
+    available in perl.
+
+Feb 13, 1995
+    $sth->{LENGTH} added.

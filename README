@@ -1,0 +1,25 @@
+This is a Perl adaptor for the MySQL database. You'll need it
+if you have perl programs designed for the msql/PerlMsql team
+and want to adapt them to the mysql server (replacing the msql
+server).
+
+This is ABSOLUTELY "BETA" and not tested thoroughly. However,
+the "msql.t" and "pmsql" utilities that were included with
+MsqlPerl-1.16 are working fine with this replacement (and
+are included here, too).
+
+The code in this package is
+Copyright (c) 1994-1997 Andreas König <a.koenig@mind.de>
+
+Changes have been made by Michael Widenius <monty@analytikerna.se>
+and Frederik Ramm <ramm@rz.uni-karlsruhe.de> to the effect that 
+nobody knows why certain things aren't working. Please see the
+"Changes" file for latest news. 
+
+How to install:
+* perl Makefile.PL
+* make
+* make install
+
+I (Fred) have deleted the rest of this README, see the original 
+MsqlPerl docs for more. 
